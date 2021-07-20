@@ -23,7 +23,7 @@ public class Solution
     //     { "CM", 900 },
     // };
 
-    static Dictionary<char, int> dic = new Dictionary<char, int>
+    static Dictionary<char, int> dicRomanToInt = new Dictionary<char, int>
     {
         { 'I', 1 },
         { 'V', 5 },
