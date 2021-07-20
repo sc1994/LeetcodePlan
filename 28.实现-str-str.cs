@@ -18,11 +18,14 @@ public class Solution
             return 0;
         }
 
+
+
+        bool success;
         for (int i = 0; i < haystack.Length; i++)
         {
             if (haystack[i] == needle[0])
             {
-                var success = true;
+                success = true;
                 for (int j = 1; j < needle.Length; j++)
                 {
                     if (haystack.Length <= i + j || needle[j] != haystack[i + j])
