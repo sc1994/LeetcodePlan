@@ -35,7 +35,10 @@ public class Solution
 
     public void Do(TreeNode p, TreeNode q)
     {
-        if(p == null && q )
+        if (p == null && q == null) return;
+        if (p == null && q != null) throw new System.Exception("");
+        if (p != null && q == null) throw new System.Exception("");
+
         if (p.val == q.val)
         {
             Do(p.left, q.left);
