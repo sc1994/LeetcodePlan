@@ -23,20 +23,22 @@ using System.Linq;
 
 public class Solution
 {
-    private static List<int> tmp = null;
+    private static List<int?> tmp = null;
     public bool IsSymmetric(TreeNode root)
     {
-        tmp = new List<int>();
+        tmp = new List<int?>();
 
         Do(root);
 
         if (tmp.Count == 1) return true;
-
         if (tmp.Count % 2 == 0) return false;
 
         var l = tmp.Take(tmp.Count / 2).ToArray();
 
         var r = tmp.Skip(tmp.Count / 2 + 1).ToArray();
+
+        System.Console.WriteLine(string.Join(",", l));
+        System.Console.WriteLine(string.Join(",", r));
 
         for (int i = 0; i < l.Length; i++)
         {
@@ -51,28 +53,29 @@ public class Solution
 
     public void Do(TreeNode node)
     {
-        if (node != null)
+        if (node == null) return;
+
+        if (node.left == null && node.right != null)
+        {
+            tmp.Add(null);
+            System.Console.WriteLine("null");
+        }
+        else
         {
             Do(node.left);
-            tmp.Add(node.val);
-            System.Console.WriteLine("node:{0} , val: {1}", node, node.val);
+        }
+        tmp.Add(node.val);
+        System.Console.WriteLine(node.val);
+        if (node.right == null && node.left != null)
+        {
+            tmp.Add(null);
+            System.Console.WriteLine("null");
+        }
+        else
+        {
             Do(node.right);
         }
     }
 }
 // @lc code=end
-
-
-/*
-C# 似乎无法通过这个用例
-
-Wrong Answer
-194/197 cases passed (N/A)
-Testcase
-[1,2,2,2,null,2]
-Answer
-true
-Expected Answer
-false
-*/
 
