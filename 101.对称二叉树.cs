@@ -26,55 +26,22 @@ public class Solution
     private static List<int?> tmp = null;
     public bool IsSymmetric(TreeNode root)
     {
-        tmp = new List<int?>();
-
-        Do(root);
-
-        if (tmp.Count == 1) return true;
-        if (tmp.Count % 2 == 0) return false;
-
-        var l = tmp.Take(tmp.Count / 2).ToArray();
-
-        var r = tmp.Skip(tmp.Count / 2 + 1).ToArray();
-
-        System.Console.WriteLine(string.Join(",", l));
-        System.Console.WriteLine(string.Join(",", r));
-
-        for (int i = 0; i < l.Length; i++)
-        {
-            if (l[i] != r[r.Length - 1 - i])
-            {
-                return false;
-            }
-        }
-
-        return true;
+        return Do(root?.left, root?.right);
     }
 
-    public void Do(TreeNode node)
+    public bool Do(TreeNode l, TreeNode r)
     {
-        if (node == null) return;
+        if (l == null || r == null)
+        {
+            return l?.val == r?.val;
+        }
 
-        if (node.left == null && node.right != null)
+        if (l.val != r.val)
         {
-            tmp.Add(null);
-            System.Console.WriteLine("null");
+            return false;
         }
-        else
-        {
-            Do(node.left);
-        }
-        tmp.Add(node.val);
-        System.Console.WriteLine(node.val);
-        if (node.right == null && node.left != null)
-        {
-            tmp.Add(null);
-            System.Console.WriteLine("null");
-        }
-        else
-        {
-            Do(node.right);
-        }
+
+        return Do(l.left, r.right) && Do(l.right, r.left);
     }
 }
 // @lc code=end

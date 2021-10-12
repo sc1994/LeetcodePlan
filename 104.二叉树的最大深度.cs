@@ -22,7 +22,18 @@ public class Solution
 {
     public int MaxDepth(TreeNode root)
     {
+        Do(root);
 
+        return 0;
+    }
+
+    void Do(TreeNode node)
+    {
+        if (node == null) return;
+        
+        System.Console.WriteLine(node?.val);
+        Do(node?.left);
+        Do(node?.right);
     }
 }
 // @lc code=end
